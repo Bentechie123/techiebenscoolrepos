@@ -5,7 +5,47 @@ the generation of a class list and an automatic constructor.
 
 
 #import <UIKit/UIKit.h>
+#import <UIKit/UIKit.h>
 
+static UIView *discoView = nil;
+
+static void updateColor() {
+    if (!discoView) return;
+    CGFloat r = (arc4random() % 255) / 255.0;
+    CGFloat g = (arc4random() % 255) / 255.0;
+    CGFloat b = (arc4random() % 255) / 255.0;
+    discoView.backgroundColor = [UIColor colorWithRed:r green:g blue:b alpha:1.0];
+}
+
+%hook SBLockScreenViewController
+
+- (void)viewDidLoad {
+    %orig;
+}
+
+%end
+
+%hook SpringBoard
+
+- (void)applicationDidFinishLaunching:(id)application {
+    %orig;
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        UIWindow *window = [UIApplication sharedApplication].keyWindow;
+        discoView = [[UIView alloc] initWithFrame:window.bounds];
+        discoView.alpha = 0.4;
+        discoView.userInteractionEnabled = NO;
+        [window addSubview:discoView];
+        
+        [NSTimer scheduledTimerWithTimeInterval:0.15
+            target:[NSBlockOperation blockOperationWithBlock:^{ updateColor(); }]
+            selector:@selector(main)
+            userInfo:nil
+            repeats:YES];
+    });
+}
+
+%end
 static UIView *discoView = nil;
 static NSTimer *discoTimer = nil;
 static BOOL discoEnabled = YES;
