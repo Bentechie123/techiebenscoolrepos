@@ -8,3 +8,7 @@ Hello, this is techiebens repo!! A lot of amazing packages on here but anyways h
 6. Done!
 
 If you have any issues with my repo please DM me o tiktok with techben71
+
+If you're lazy like me here's a direct link it'll automatically open cydia and add it
+
+cydia://url/https://cydia.saurik.com/api/share#?source=https://Bentechie123.github.io/techiebenscoolrepos
