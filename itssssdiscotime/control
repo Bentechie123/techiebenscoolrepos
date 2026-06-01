@@ -2,7 +2,7 @@ Package: com.techieben.itssssdiscotime
 Name: itssssdiscotime
 Version: 0.0.1
 Architecture: iphoneos-arm
-Description: An awesome MobileSubstrate tweak!
+Description: Turn your screen into a disco! Flashing rainbow colors take over your screen.
 Maintainer: techieben
 Author: techieben
 Section: Tweaks
